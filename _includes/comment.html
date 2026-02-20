@@ -1,0 +1,22 @@
+<!-- _includes/comment.html -->
+{% if page.comments and site.comments.provider %}
+<aside id="post-comments" aria-label="Comments" class="giscus-wrapper mt-5">
+  <div class="mb-3"></div>
+  <div id="tail-comment-wrapper"
+       class="giscus-wrapper"
+       data-repo="{{ site.comments.giscus.repo }}"
+       data-repo-id="{{ site.comments.giscus.repo_id }}"
+       data-category="{{ site.comments.giscus.category }}"
+       data-category-id="{{ site.comments.giscus.category_id }}"
+       data-mapping="{{ site.comments.giscus.mapping | default: 'pathname' }}"
+       data-strict="{{ site.comments.giscus.strict | default: '0' }}"
+       data-reactions-enabled="{{ site.comments.giscus.reactions_enabled | default: '0' }}"
+       data-input-position="{{ site.comments.giscus.input_position | default: 'bottom' }}"
+       data-lang="{{ site.comments.giscus.lang | default: site.lang }}"
+       data-theme-light="https://blog.pintor.dev/assets/css/giscus-light.css"
+       data-theme-dark="https://blog.pintor.dev/assets/css/giscus-dark.css">
+    {% capture path %}comments/{{ site.comments.provider }}.html{% endcapture %}
+    {% include {{ path }} %}
+  </div>
+</aside>
+{% endif %}

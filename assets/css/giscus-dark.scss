@@ -1,0 +1,142 @@
+---
+---
+/* =========================================================
+   Chirpy Dark theme for giscus
+   ========================================================= */
+
+:root { color-scheme: dark; }
+
+main {
+  --color-canvas-default: rgb(27 27 30);;
+  --color-canvas-overlay: rgb(27 27 30);;
+  --color-canvas-inset: #1e1e1e;  /* --card-header-bg */
+  --color-canvas-subtle: #1e1e1e; /* same as inset */
+
+  /* text (from Chirpy dark) */
+  --color-fg-default: #a7a7a7; /* --label-color */
+  --color-fg-muted: #868686;   /* --text-muted-color */
+
+  /* buttons (from Chirpy dark) */
+  --color-btn-bg: #1e1e1e;     /* --sidebar-bg */
+  --color-btn-active: #1e1e1e; /* keep same policy as light */
+
+  /* borders/lines (from Chirpy dark) */
+  --color-border-default: #2e2f31; /* --btn-border-color */
+  --color-border-primary: #2e2f31; /* same as default */
+  --color-border-muted: rgb(44 45 45); /* --main-border-color (closest “muted” border in Chirpy dark) */
+
+  /* accent (from Chirpy dark) */
+  --color-accent-emphasis: #2e2f31; /* --link-underline-color */
+  --color-accent-muted: #2e2f31;    /* --link-underline-color */
+
+  /* code highlight import-ish tint (from Chirpy dark text tone) */
+  --color-prettylights-syntax-storage-modifier-import: rgb(175 176 177); /* --text-color */
+
+  /* Chirpy card shadow (exact) */
+  --chirpy-card-shadow:
+    rgb(21 21 21 / 72%) 0 6px 18px 0,
+    rgb(137 135 135 / 24%) 0 0 0 1px;
+
+  /* line color = card outline (exact) */
+  --chirpy-line: rgb(137 135 135 / 24%);
+}
+
+/* =========================================================
+   1) 카드 외곽
+   ========================================================= */
+main .gsc-main {
+  background-color: var(--color-canvas-default) !important;
+}
+
+main .gsc-comment > div.border {
+  border: 0 !important;
+  box-shadow: var(--chirpy-card-shadow) !important;
+  border-radius: .375rem !important;
+  overflow: hidden !important;
+  background: var(--color-canvas-default) !important;
+}
+
+main .gsc-comment-box:not(.gsc-comment-box-is-reply) {
+  border: 0 !important;
+  box-shadow: var(--chirpy-card-shadow) !important;
+  border-radius: .375rem !important;
+  overflow: hidden !important;
+  background: var(--color-canvas-default) !important;
+}
+
+/* =========================================================
+   2) 내부 라인 연결
+   ========================================================= */
+
+main .gsc-comment-header,
+main .gsc-comment-content,
+main .gsc-comment-footer,
+main .gsc-comment-box-tabs,
+main .gsc-comment-box-main {
+  box-shadow:
+    inset 1px 0 0 0 var(--chirpy-line),
+    inset -1px 0 0 0 var(--chirpy-line);
+}
+
+main .gsc-reply-box,
+main .gsc-comment-box-bottom {
+  box-shadow:
+    inset 1px 0 0 0 var(--chirpy-line),
+    inset -1px 0 0 0 var(--chirpy-line),
+    inset 0 -1px 0 0 var(--chirpy-line);
+}
+
+main form.gsc-comment-box-is-reply .gsc-comment-box-bottom {
+  box-shadow:
+    inset 1px 0 0 0 var(--chirpy-line),
+    inset -1px 0 0 0 var(--chirpy-line);
+}
+
+main .gsc-comment-box-tabs {
+  box-shadow:
+    inset 1px 0 0 0 var(--chirpy-line),
+    inset -1px 0 0 0 var(--chirpy-line),
+    inset 0 1px 0 0 var(--chirpy-line);
+}
+
+/* =========================================================
+   3) spacing 보정
+   ========================================================= */
+
+main .gsc-comment-footer {
+  margin: 0 !important;
+  padding: .75rem !important;
+}
+
+main .gsc-comment-box-main,
+main .gsc-comment-box-bottom {
+  margin: 0 !important;
+  padding: .5rem !important;
+}
+
+main .gsc-comment-box-bottom {
+  padding-top: 0 !important;
+}
+
+/* =========================================================
+   4) 버튼
+   ========================================================= */
+
+main .btn,
+main .btn-primary,
+main .btn-primary:disabled {
+  border-color: var(--color-border-default);
+  background-color: var(--color-canvas-overlay);
+  color: var(--color-fg-default);
+}
+
+main .btn-primary:disabled:hover {
+  background-color: var(--color-canvas-overlay);
+  cursor: not-allowed;
+}
+
+main .btn:hover,
+main .btn-primary:hover {
+  border-color: var(--color-border-primary);
+  background-color: var(--color-btn-active);
+}

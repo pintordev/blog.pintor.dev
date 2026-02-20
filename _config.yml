@@ -9,37 +9,34 @@ theme: jekyll-theme-chirpy
 lang: en
 
 # Change to your timezone › https://zones.arilyn.cc
-timezone:
+timezone: Asia/Seoul
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Chirpy # the main title
+title: pintor.dev # the main title
 
-tagline: A text-focused Jekyll theme # it will display as the subtitle
+tagline: novice coder, lifelong learner # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+  notes on tools, workflows, and coding problems.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
-url: ""
+url: "https://blog.pintor.dev"
 
 github:
-  username: github_username # change to your GitHub username
-
-twitter:
-  username: twitter_username # change to your Twitter username
+  username: pintordev # change to your GitHub username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: your_full_name
-  email: example@domain.com # change to your email address
+  name: pintor.dev
+  email: pintor.dev@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username # change to your Twitter homepage
-    - https://github.com/username # change to your GitHub homepage
+    - https://blog.pintor.dev # change to your Blog homepage
+    - https://github.com/pintordev # change to your GitHub homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
@@ -98,18 +95,18 @@ theme_mode: # [light | dark]
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: "/assets/img/bio-photo.png"
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
-social_preview_image: # string, local or CORS resources
+social_preview_image: /assets/img/og-default.png # string, local or CORS resources
 
 # boolean type, the global switch for TOC in posts.
 toc: true
 
 comments:
   # Global switch for the post-comment system. Keeping it empty means disabled.
-  provider: # [disqus | utterances | giscus]
+  provider: giscus # [disqus | utterances | giscus]
   # The provider options are as follows:
   disqus:
     shortname: # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
@@ -119,15 +116,15 @@ comments:
     issue_term: # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
-    repo: # <gh-username>/<repo>
-    repo_id:
-    category:
-    category_id:
+    repo: pintordev/blog.pintor.dev # <gh-username>/<repo>
+    repo_id: R_kgDORUyiKQ
+    category: Comments
+    category_id: DIC_kwDORUyiKc4C23It
     mapping: # optional, default to 'pathname'
     strict: # optional, default to '0'
     input_position: # optional, default to 'bottom'
     lang: # optional, default to the value of `site.lang`
-    reactions_enabled: # optional, default to the value of `1`
+    reactions_enabled: 0 # optional, default to the value of `1`
 
 # Self-hosted static assets, optional › https://github.com/cotes2020/chirpy-static-assets
 assets:
@@ -138,14 +135,14 @@ assets:
     env: # [development | production]
 
 pwa:
-  enabled: true # The option for PWA feature (installable)
+  enabled: false # The option for PWA feature (installable)
   cache:
     enabled: true # The option for PWA offline cache
     # Paths defined here will be excluded from the PWA cache.
     # Usually its value is the `baseurl` of another website that
     # shares the same domain name as the current website.
     deny_paths:
-      # - "/example"  # URLs match `<SITE_URL>/example/*` will not be cached by the PWA
+    # - "/example"  # URLs match `<SITE_URL>/example/*` will not be cached by the PWA
 
 paginate: 10
 
@@ -177,11 +174,51 @@ defaults:
       type: posts
     values:
       layout: post
+      permalink: /log/:title
       comments: true # Enable comments in posts.
       toc: true # Display TOC column in posts.
       # DO NOT modify the following parameter unless you are confident enough
       # to update the code of all other post links in this project.
-      permalink: /posts/:title/
+  - scope:
+      path: "_posts/log"
+    values:
+      categories: [log]
+      permalink: /log/:title
+      breadcrumb:
+        - label: Log
+          url: /categories/log/
+  - scope:
+      path: "_posts/algorithm"
+    values:
+      categories: [algorithm]
+      permalink: /algorithm/:title
+      breadcrumb:
+        - label: Algorithm
+          url: /categories/algorithm/
+  - scope:
+      path: "_posts/dev"
+    values:
+      categories: [dev]
+      permalink: /dev/:title
+      breadcrumb:
+        - label: Dev
+          url: /categories/dev/
+  - scope:
+      path: "_posts/git"
+    values:
+      categories: [git]
+      permalink: /git/:title
+      breadcrumb:
+        - label: Git
+          url: /categories/git/
+  - scope:
+      path: "_posts/infra"
+    values:
+      categories: [infra]
+      permalink: /infra/:title
+      breadcrumb:
+        - label: Infra
+          url: /categories/infra/
   - scope:
       path: _drafts
     values:
@@ -215,6 +252,7 @@ exclude:
   - purgecss.js
   - "*.config.js"
   - "package*.json"
+  - assets/img/favicons/site.webmanifest
 
 jekyll-archives:
   enabled: [categories, tags]
@@ -224,3 +262,6 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+post_navigation: false
+

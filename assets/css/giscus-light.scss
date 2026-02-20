@@ -1,0 +1,119 @@
+---
+---
+  /* Chirpy Light theme for giscus */
+:root { color-scheme: light; }
+
+main {
+  --color-canvas-default: #ffffff;
+  --color-canvas-overlay: #ffffff;
+  --color-canvas-inset: #f6f8fa;
+  --color-canvas-subtle: #f6f8fa;
+
+  --color-fg-default: #585858; // changed to chirpy style
+  --color-fg-muted: #757575; // changed to chirpy style
+
+  --color-btn-bg: #f6f8fa; // changed to chirpy style, var(--color-canvas-inset)
+  --color-btn-active: #f6f8fa; // changed to chirpy style, var(--color-canvas-inset)
+
+  --color-border-default: #dee2e6; // changed to chirpy style
+  --color-border-primary: #dee2e6; // changed to chirpy style
+  --color-border-muted: rgba(0, 0, 0, 0.08); // changed to chirpy style
+
+  --color-accent-emphasis: #dee2e6; // changed to chirpy style
+  --color-accent-muted: #dee2e6; // changed to chirpy style
+
+  --color-prettylights-syntax-storage-modifier-import: #0000002d; // changed to chirpy style
+
+  /* Chirpy 카드 shadow (너가 준 값 그대로) */
+  --chirpy-card-shadow:
+    rgb(104 104 104 / 5%) 0 2px 6px 0,
+    rgb(211 209 209 / 15%) 0 0 0 1px;
+
+  /* ✅ 라인 색만 따로 뽑아 재사용 */
+  --chirpy-line: rgb(211 209 209 / 15%);
+}
+
+/* =========================================================
+   1) “카드 외곽”만 Chirpy shadow로 (내부 구분선은 건드리지 않음)
+   ========================================================= */
+main .gsc-comment > div.border {
+  border: 0 !important;
+  box-shadow: var(--chirpy-card-shadow) !important;
+  border-radius: .375rem !important;
+  overflow: hidden !important;
+  background: var(--color-canvas-default) !important;
+}
+
+main .gsc-comment-box:not(.gsc-comment-box-is-reply) {
+  border: 0 !important;
+  box-shadow: var(--chirpy-card-shadow) !important;
+  border-radius: .375rem !important;
+  overflow: hidden !important;
+  background: var(--color-canvas-default) !important;
+}
+
+main .gsc-comment-header,
+main .gsc-comment-content,
+main .gsc-comment-footer,
+main .gsc-comment-box-tabs,
+main .gsc-comment-box-main {
+  box-shadow:
+    inset 1px 0 0 0 var(--chirpy-line),
+    inset -1px 0 0 0 var(--chirpy-line);
+}
+
+main .gsc-reply-box,
+main .gsc-comment-box-bottom {
+  box-shadow:
+    inset 1px 0 0 0 var(--chirpy-line),
+    inset -1px 0 0 0 var(--chirpy-line),
+    inset 0 -1px 0 0 var(--chirpy-line);
+}
+
+main form.gsc-comment-box-is-reply .gsc-comment-box-bottom {
+  box-shadow:
+    inset 1px 0 0 0 var(--chirpy-line),
+    inset -1px 0 0 0 var(--chirpy-line);
+}
+
+main .gsc-comment-box-tabs {
+  box-shadow:
+    inset 1px 0 0 0 var(--chirpy-line),
+    inset -1px 0 0 0 var(--chirpy-line),
+    inset 0 1px 0 0 var(--chirpy-line);
+}
+
+/* 2) margin 때문에 선이 끊기던 구간: margin 0 + padding으로 라인 “연결” */
+main .gsc-comment-footer {
+  margin: 0 !important;
+  padding: .75rem !important;
+}
+
+main .gsc-comment-box-main,
+main .gsc-comment-box-bottom {
+  margin: 0 !important;
+  padding: .5rem !important;
+}
+
+/* 3) 하단 버튼 줄: 위 padding만 제거(네가 한 그대로) */
+main .gsc-comment-box-bottom {
+  padding-top: 0 !important;
+}
+
+main .btn,
+main .btn-primary,
+main .btn-primary:disabled {
+  border-color: var(--color-border-default);
+  background-color: var(--color-canvas-default);
+}
+
+main .btn-primary:disabled:hover {
+  background-color: var(--color-canvas-default);
+  cursor: not-allowed;
+}
+
+main .btn:hover,
+main .btn-primary:hover {
+  border-color: var(--color-border-default);
+  background-color: var(--color-btn-active);
+}

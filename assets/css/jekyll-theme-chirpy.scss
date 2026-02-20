@@ -1,0 +1,89 @@
+---
+---
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+.pn-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2.25rem;
+}
+
+/* 카드 박스: Chirpy 카드 톤 */
+.pn-card {
+  position: relative;
+  display: block;
+  padding: 1rem 1.25rem;
+  border-radius: .75rem;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  text-decoration: none;
+  color: inherit;
+}
+
+.pn-placeholder { background: transparent; box-shadow: none; }
+
+.pn-meta {
+  display: block;
+  color: var(--text-muted-color);
+  font-size: 0.8rem;
+}
+
+/* 제목 타이포는 h4가 책임짐 — pn-title은 레이아웃만 */
+.pn-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 아이콘 배치 */
+.pn-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-muted-color);
+  opacity: .8;
+}
+
+.pn-prev { padding-left: 2.6rem; text-align: left; }
+.pn-next { padding-right: 2.6rem; text-align: right; }
+
+.pn-prev .pn-arrow { left: 0.6rem; }
+.pn-next .pn-arrow { right: 0.6rem; }
+
+.pn-preview {
+  overflow: hidden; /* ::before 클립 */
+}
+
+/* hover overlay */
+.pn-preview::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+  background-color: var(--card-hover-bg);
+
+  opacity: 0;
+  transition: opacity .35s ease-in-out;
+
+  pointer-events: none; /* 클릭 방해 X */
+}
+
+/* hover 시 배경만 밝아짐 */
+.pn-preview:hover::before {
+  opacity: .3;
+}
+
+@media (max-width: 768px) {
+  .pn-wrap { grid-template-columns: 1fr; gap: 1rem; }
+}
