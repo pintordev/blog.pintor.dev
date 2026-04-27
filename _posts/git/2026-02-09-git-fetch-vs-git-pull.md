@@ -1,7 +1,7 @@
 ---
-title: git fetch vs. git pull
-date: 2026-02-22
-last_modified_at: 2026-02-22
+title: "git fetch와 git pull"
+date: 2026-02-09
+last_modified_at: 2026-02-09
 categories: [git, workflow]
 tags: [weekly paper, git, fetch, pull]
 toc: true
@@ -15,7 +15,7 @@ comments: true
 
 ---
 
-## Context
+## Background
 Git에서 원격 저장소와 동기화할 때 가장 많이 사용하는 명령어가  
 `git fetch`와 `git pull`이다.
 
@@ -101,6 +101,6 @@ Git에서 원격 저장소와 동기화할 때 가장 많이 사용하는 명령
 
 ---
 
-## One-line Rule
-> **확인하고 합치면 fetch,  
+## Key Point
+> **확인하고 합치면 fetch,
 > 바로 당기면 pull.**
