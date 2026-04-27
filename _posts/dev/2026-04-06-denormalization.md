@@ -16,7 +16,7 @@ comments: true
 
 ---
 
-## Context
+## Background
 
 데이터베이스 설계에서 정규화는 기본이다. 중복을 제거하고 테이블을 분리함으로써 데이터 일관성을 보장한다.
 
@@ -118,7 +118,7 @@ UPDATE users SET order_count = order_count + 1 WHERE id = 1;
 
 ---
 
-## One-line Rule
+## Key Point
 
 > **정규화로 설계하고, 측정 후 병목에만 역정규화를 적용한다.**
 
