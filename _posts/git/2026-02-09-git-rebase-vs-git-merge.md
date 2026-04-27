@@ -1,7 +1,7 @@
 ---
-title: git rebase vs. git merge
-date: 2026-02-21
-last_modified_at: 2026-02-21
+title: "git rebase와 git merge"
+date: 2026-02-09
+last_modified_at: 2026-02-09
 categories: [git, workflow]
 tags: [weekly paper, git, rebase, merge]
 toc: true
@@ -15,7 +15,7 @@ comments: true
 
 ---
 
-## Context
+## Background
 Git을 사용하다 보면 브랜치를 합치는 상황은 자주 발생한다.  
 하지만 막상 **rebase와 merge 중 무엇을 써야 하는지**는 헷갈리기 쉽다.
 
@@ -92,6 +92,6 @@ Git을 사용하다 보면 브랜치를 합치는 상황은 자주 발생한다.
 
 ---
 
-## One-line Rule
-> **히스토리를 다시 쓰는 건 혼자일 때만,  
+## Key Point
+> **히스토리를 다시 쓰는 건 혼자일 때만,
 > 같이 쓰는 브랜치는 merge로 합친다.**
