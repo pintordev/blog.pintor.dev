@@ -1,5 +1,5 @@
 ---
-title: Single Responsibility Principle (SRP) and Open–Closed Principle (OCP)
+title: "단일 책임 원칙(SRP)과 개방-폐쇄 원칙(OCP)"
 date: 2026-02-23
 last_modified_at: 2026-02-23
 categories: [dev, design]
@@ -15,7 +15,7 @@ comments: true
 
 ---
 
-## Context
+## Background
 
 객체지향 설계의 5가지 원칙, **SOLID** 중 첫 두 가지가 SRP와 OCP다.
 
@@ -161,6 +161,6 @@ SRP와 OCP는 서로를 강화한다.
 
 ---
 
-## One-line Rule
+## Key Point
 > **책임은 하나로 나누고(SRP),
 > 새 기능은 추가로 해결한다(OCP).**
