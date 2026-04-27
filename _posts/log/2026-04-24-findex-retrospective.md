@@ -2,7 +2,7 @@
 title: "[프로젝트 회고] Findex 백엔드 프로젝트를 마치며"
 date: 2026-04-24
 last_modified_at: 2026-04-24
-categories: [log]
+categories: [log, retrospective]
 tags: [retrospective, spring-boot, querydsl, postgresql, jpa, team-project]
 toc: true
 comments: true
