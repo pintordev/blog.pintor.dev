@@ -122,6 +122,13 @@ script_includes: []
     {{ content }}
   </div>
 
+  <script>
+    document.querySelectorAll('.content a[href^="http"]').forEach(function(link) {
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    });
+  </script>
+
   <div class="post-tail-wrapper text-muted">
     <!-- categories -->
     {% if page.categories.size > 0 %}
