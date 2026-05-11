@@ -196,4 +196,4 @@ Spy는 실제 구현에 의존하기 때문에 테스트가 내부 구현에 결
 
 - [Mockito Docs](https://site.mockito.org/)
 - [Mocks Aren't Stubs — Martin Fowler](https://martinfowler.com/articles/mocksArentStubs.html)
-- [Test Double — xUnit Patterns](http://xunitpatterns.com/Test%20Double.html)
+- [Test Double — xUnit Patterns](https://xunitpatterns.com/Test%20Double.html)
