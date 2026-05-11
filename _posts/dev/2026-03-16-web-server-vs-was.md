@@ -3,7 +3,7 @@ title: "웹 서버(Web Server)와 WAS"
 date: 2026-03-16
 last_modified_at: 2026-03-16
 categories: [dev, spring]
-tags: [web-server, was, tomcat, nginx, apache, spring-boot, servlet]
+tags: [weekly paper, web-server, was, tomcat, nginx, apache, spring-boot, servlet]
 toc: true
 comments: true
 ---

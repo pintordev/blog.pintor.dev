@@ -3,7 +3,7 @@ title: "Spring Bean 등록 방법"
 date: 2026-03-16
 last_modified_at: 2026-03-16
 categories: [dev, spring]
-tags: [spring, bean, component-scan, configuration, dependency-injection, ioc]
+tags: [weekly paper, spring, bean, component-scan, configuration, dependency-injection, ioc]
 toc: true
 comments: true
 ---

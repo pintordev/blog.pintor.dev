@@ -3,7 +3,7 @@ title: "Spring @RestController의 HTTP 요청 처리 흐름"
 date: 2026-03-30
 last_modified_at: 2026-03-30
 categories: [dev, spring]
-tags: [spring, rest-controller, dispatcher-servlet, http-message-converter, jackson, mvc]
+tags: [weekly paper, spring, rest-controller, dispatcher-servlet, http-message-converter, jackson, mvc]
 toc: true
 comments: true
 ---

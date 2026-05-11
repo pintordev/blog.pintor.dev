@@ -3,7 +3,7 @@ title: "Spring MVC의 @Controller와 @RestController"
 date: 2026-03-23
 last_modified_at: 2026-03-23
 categories: [dev, spring]
-tags: [spring, mvc, controller, rest-controller, dispatcher-servlet, view-resolver, http-message-converter]
+tags: [weekly paper, spring, mvc, controller, rest-controller, dispatcher-servlet, view-resolver, http-message-converter]
 toc: true
 comments: true
 ---

@@ -3,7 +3,7 @@ title: 역정규화 (Denormalization)
 date: 2026-04-06
 last_modified_at: 2026-04-06
 categories: [dev, sql]
-tags: [sql, database, denormalization, normalization, performance, trade-off, rdbms]
+tags: [weekly paper, sql, database, denormalization, normalization, performance, trade-off, rdbms]
 toc: true
 comments: true
 ---

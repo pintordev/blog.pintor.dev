@@ -3,7 +3,7 @@ title: "프레임워크와 라이브러리의 차이"
 date: 2026-03-09
 last_modified_at: 2026-03-09
 categories: [dev, spring]
-tags: [spring-framework, framework, library, ioc, java]
+tags: [weekly paper, spring-framework, framework, library, ioc, java]
 toc: true
 comments: true
 ---

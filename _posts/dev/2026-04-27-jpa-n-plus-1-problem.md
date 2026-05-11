@@ -3,7 +3,7 @@ title: "JPA N+1 문제: 발생 원인과 해결 방안"
 date: 2026-04-27
 last_modified_at: 2026-04-27
 categories: [dev, jpa]
-tags: [jpa, hibernate, spring-boot, n+1, lazy-loading, eager-loading, fetch-join, batch-size, orm]
+tags: [weekly paper, jpa, hibernate, spring-boot, n+1, lazy-loading, eager-loading, fetch-join, batch-size, orm]
 toc: true
 comments: true
 ---

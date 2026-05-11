@@ -3,7 +3,7 @@ title: "Spring AOP"
 date: 2026-03-23
 last_modified_at: 2026-03-23
 categories: [dev, spring]
-tags: [spring, aop, aspect, pointcut, advice, proxy, transaction, logging]
+tags: [weekly paper, spring, aop, aspect, pointcut, advice, proxy, transaction, logging]
 toc: true
 comments: true
 ---

@@ -3,7 +3,7 @@ title: "Spring Framework의 탄생 배경"
 date: 2026-03-09
 last_modified_at: 2026-03-09
 categories: [dev, spring]
-tags: [spring-framework, java, ejb, di, ioc, pojo]
+tags: [weekly paper, spring-framework, java, ejb, di, ioc, pojo]
 toc: true
 comments: true
 ---

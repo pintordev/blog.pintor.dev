@@ -3,7 +3,7 @@ title: "SOAP에서 REST로의 전환"
 date: 2026-03-30
 last_modified_at: 2026-03-30
 categories: [dev, web]
-tags: [soap, rest, api, http, xml, json, web-service]
+tags: [weekly paper, soap, rest, api, http, xml, json, web-service]
 toc: true
 comments: true
 ---

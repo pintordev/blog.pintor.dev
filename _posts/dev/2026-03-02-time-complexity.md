@@ -3,7 +3,7 @@ title: "O(n)과 O(log n)의 성능 차이"
 date: 2026-03-02
 last_modified_at: 2026-03-02
 categories: [dev, java]
-tags: [algorithm, time-complexity, big-o, binary-search, data-structure]
+tags: [weekly paper, algorithm, time-complexity, big-o, binary-search, data-structure]
 toc: true
 comments: true
 ---

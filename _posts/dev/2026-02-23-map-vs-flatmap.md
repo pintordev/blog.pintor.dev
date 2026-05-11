@@ -3,7 +3,7 @@ title: "Java Stream API의 map과 flatMap"
 date: 2026-02-23
 last_modified_at: 2026-02-23
 categories: [dev, java-stream]
-tags: [java, stream, map, flatmap, functional-programming, collection]
+tags: [weekly paper, java, stream, map, flatmap, functional-programming, collection]
 toc: true
 comments: true
 ---

@@ -3,7 +3,7 @@ title: "트랜잭션 격리성과 격리 수준"
 date: 2026-04-27
 last_modified_at: 2026-04-27
 categories: [dev, database]
-tags: [transaction, isolation, acid, dirty-read, non-repeatable-read, phantom-read, database, sql]
+tags: [weekly paper, transaction, isolation, acid, dirty-read, non-repeatable-read, phantom-read, database, sql]
 toc: true
 comments: true
 ---
