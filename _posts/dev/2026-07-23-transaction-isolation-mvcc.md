@@ -1,7 +1,7 @@
 ---
 title: "트랜잭션 격리 수준과 MVCC 정리"
 date: 2026-07-23
-last_modified_at: 2026-07-30
+last_modified_at: 2026-08-20
 categories: [dev, database]
 tags: [study note, computer science, database, transaction, isolation, mvcc, lock, sql]
 toc: true
@@ -201,6 +201,21 @@ MVCC로 읽기 일관성은 해결되지만, 쓰기 충돌(두 트랜잭션이 �
 
 `SELECT ... FOR UPDATE`는 조회한 행에 배타 락(X)을 걸어, 다른 트랜잭션이 그 행을 읽는 것(락을 요구하는 읽기)이나 쓰는 것을 모두 막는다 — 갱신을 전제로 한 조회에 쓴다. `SELECT ... FOR SHARE`(MySQL의 `LOCK IN SHARE MODE`)는 공유 락(S)을 걸어, 다른 트랜잭션의 읽기(공유 락)는 허용하되 쓰기(배타 락)는 막는다 — "이 값이 바뀌지 않는다는 걸 보장받고 싶지만 나도 바꿀 건 아니다"는 상황에 쓴다.
 
+### 락 기반 관점에서 본 격리 수준 — 결국 언제 걸고 언제 푸느냐의 문제
+
+지금까지는 MVCC 관점(스냅샷을 얼마나 자주 새로 뜨는가)으로 격리 수준을 설명했다. 하지만 격리 수준이라는 개념 자체는 원래 **락만으로** 구현하는 것을 전제로 정의됐다 — MVCC는 그 정의를 락 없이 재현하는 대안 기법일 뿐이다. 순수하게 락(엄격한 2단계 잠금, Strict Two-Phase Locking)만으로 구현한다면, 네 격리 수준의 차이는 결국 **공유 락(S)을 언제 걸고 언제 푸는가**로 요약된다.
+
+| 격리 수준 | 읽기에 거는 락 | 락을 유지하는 기간 |
+|---|---|---|
+| READ UNCOMMITTED | 공유 락을 아예 걸지 않음 | — |
+| READ COMMITTED | 읽는 순간 공유 락을 걺 | 그 문장(statement)이 끝나면 즉시 해제 |
+| REPEATABLE READ | 읽는 순간 공유 락을 걺 | 트랜잭션이 끝날 때까지 유지 |
+| SERIALIZABLE | 존재하는 행 + 조건에 해당하는 빈 범위(gap)까지 락을 걺 | 트랜잭션이 끝날 때까지 유지 |
+
+READ UNCOMMITTED는 읽기에 아무 락도 걸지 않으므로, 다른 트랜잭션이 아직 커밋하지 않아 배타 락(X)이 걸린 행도 그대로 읽어버려 Dirty Read가 발생한다. READ COMMITTED는 읽는 순간에는 공유 락을 걸어 커밋된 값만 읽도록 보장하지만, 그 문장이 끝나자마자 락을 풀어버리므로 같은 트랜잭션이 잠시 후 같은 행을 다시 읽을 때는 그 사이 다른 트랜잭션이 값을 바꿔 커밋했을 수 있다(Non-repeatable Read 허용). REPEATABLE READ는 이 공유 락을 트랜잭션이 끝날 때까지 계속 들고 있으므로, 한 번 읽은 행은 내 트랜잭션이 끝나기 전까지 다른 트랜잭션이 값을 바꿀 수 없다(Non-repeatable Read 방지). 다만 이 락은 "이미 존재하는 행"에만 걸리므로 조건에 맞는 새 행이 INSERT되는 것 자체는 막지 못한다(Phantom Read 허용) — 그래서 SERIALIZABLE은 존재하는 행뿐 아니라 그 사이의 빈 범위에도 락을 걸어 새 행이 끼어드는 것 자체를 막는다.
+
+이 관점은 앞서 설명한 MVCC 관점과 대립하는 게 아니라 **같은 결과를 다른 메커니즘으로 얻는 것**이다. MVCC는 읽기에 실제 락을 걸지 않고도 "그 시점에 유효했던 버전"만 골라 읽는 방식으로 같은 보장을 재현하고, 락 기반 구현은 읽은 행을 물리적으로 잠가 다른 트랜잭션의 접근 자체를 막는 방식으로 같은 보장을 만든다. 바로 다음에 다룰 InnoDB의 Next-Key Lock도 이 표의 SERIALIZABLE 행("존재하는 행 + 빈 범위까지 잠근다")과 같은 발상을, REPEATABLE READ 수준에서 Locking Read에 한해 선택적으로 적용하는 것이다.
+
 ### InnoDB REPEATABLE READ의 Phantom Read 방지 — Gap Lock / Next-Key Lock
 
 일반적인 REPEATABLE READ는 이론상 Phantom Read를 막지 못하지만, InnoDB는 **Next-Key Lock**(레코드 락 + 갭 락)으로 이를 상당 부분 방지한다. **갭 락(Gap Lock)**은 인덱스 레코드 "사이의 간격"에 거는 락으로, 그 범위에 새로운 행이 INSERT되는 것 자체를 막는다. 예를 들어 `WHERE age BETWEEN 20 AND 30 FOR UPDATE`를 실행하면, 기존 행뿐 아니라 그 범위 안의 "빈 공간"에도 락이 걸려 다른 트랜잭션이 `age = 25`인 새 행을 끼워 넣을 수 없다.
@@ -275,6 +290,7 @@ MVCC 저장 방식(undo log vs 튜플 버전 체인)의 차이는 앞서 다뤘�
 
 - [데이터베이스와 인덱스 정리](/dev/database-index)
 - [트랜잭션 격리성과 격리 수준](/dev/transaction-isolation)
+- [InnoDB, MySQL, PostgreSQL 정리](/dev/innodb-mysql-postgresql)
 - [Transaction Isolation — PostgreSQL Docs](https://www.postgresql.org/docs/current/transaction-iso.html)
 - [InnoDB Transaction Model — MySQL Docs](https://dev.mysql.com/doc/refman/8.0/en/innodb-transaction-model.html)
 - [InnoDB Locking — MySQL Docs](https://dev.mysql.com/doc/refman/8.0/en/innodb-locking.html)
