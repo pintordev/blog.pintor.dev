@@ -3,14 +3,14 @@
   if (!wrapper) return;
 
   function waitForTheme(cb, tries = 50) {
-    if (window.Theme && typeof Theme.getThemeMapper === 'function') return cb();
+    if (window.Theme && typeof Theme.newThemeMap === 'function') return cb();
     if (tries <= 0) return console.warn('Giscus: Theme object not available');
     setTimeout(() => waitForTheme(cb, tries - 1), 100);
   }
 
   waitForTheme(() => {
-    const themeMapper = Theme.getThemeMapper(wrapper.dataset.themeLight, wrapper.dataset.themeDark);
-    const initTheme = themeMapper[Theme.visualState];
+    const themeMapper = Theme.newThemeMap(wrapper.dataset.themeLight, wrapper.dataset.themeDark);
+    const initTheme = themeMapper[Theme.resolvedTheme];
     if (!initTheme) return console.warn('Giscus: Failed to determine initial theme');
 
     let lang = wrapper.dataset.lang || 'en';
@@ -39,7 +39,16 @@
     let activeRetry = null;
     function postTheme(theme) {
       const iframe = document.querySelector('iframe.giscus-frame');
-      if (!iframe || !iframe.contentWindow) return false;
+      if (!iframe) return false;
+      // Giscus >= client.js of 2024: while the frame is still loading, setConfig
+      // messages are dropped — rewrite the theme query param on the src instead.
+      if (iframe.classList.contains('giscus-frame--loading')) {
+        const url = new URL(iframe.src);
+        url.searchParams.set('theme', theme);
+        iframe.src = url.toString();
+        return true;
+      }
+      if (!iframe.contentWindow) return false;
       iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, 'https://giscus.app');
       return true;
     }
@@ -54,12 +63,12 @@
       }, interval);
     }
 
-    retryPostTheme(themeMapper[Theme.visualState], 15, 500);
+    retryPostTheme(themeMapper[Theme.resolvedTheme], 15, 500);
 
     const handler = (event) => {
-      if (event.source === window && event.data && event.data.id === Theme.ID) {
+      if (event.source === window && event.data && event.data.id === Theme.eventId) {
         requestAnimationFrame(() => {
-          const newTheme = themeMapper[Theme.visualState];
+          const newTheme = themeMapper[Theme.resolvedTheme];
           if (!newTheme) return;
           if (!postTheme(newTheme)) retryPostTheme(newTheme, 15, 200);
         });

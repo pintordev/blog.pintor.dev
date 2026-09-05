@@ -9,6 +9,22 @@
 ';
 
 /* append your custom style below */
+
+/* sidebar-bottom: keep an even gap between the mode-toggle group and the
+   social icons. v1.1 dropped the stock `.icon-border` spacer to hide its
+   divider dot, but in Chirpy 7.6.0 the mode toggle is wrapped in a
+   `.btn-group` that carries no trailing margin, so that gap collapsed to 0
+   while the icon-to-icon gap stayed at $sb-btn-gap. Restore the match. */
+#sidebar .sidebar-bottom .btn-group:not(:last-child) {
+  margin-right: 0.8rem;
+}
+
+@media all and (min-width: 1650px) {
+  #sidebar .sidebar-bottom .btn-group:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+
 .pn-wrap {
   display: grid;
   grid-template-columns: 1fr 1fr;
